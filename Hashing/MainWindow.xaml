@@ -1,0 +1,63 @@
+﻿<Window x:Class="Hashing.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hashing"
+        mc:Ignorable="d"
+        FontSize="14"
+        Title="Flemming's Hasher" Height="450" Width="950">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Label>Select Hash Algorithm</Label>
+            <ComboBox MinWidth="100" SelectedIndex="0" Name="HashAlgorithmComboBox">
+                <TextBlock>MD5  (Legacy)</TextBlock>
+                <TextBlock>SHA1 (Legacy)</TextBlock>
+                <TextBlock>SHA256</TextBlock>
+                <TextBlock>SHA512</TextBlock>
+
+            </ComboBox>
+            <Button Grid.Row="2" Grid.Column="1" Margin="0,10" Content="Generate Hashed Key" Click="Button_Click" />
+        </StackPanel>
+
+        <Button Grid.Row="3" Grid.Column="1" Content="Create  HMAC" Click="Hvac_Click" />
+        <StackPanel Grid.Row="1" Grid.Column="2" Margin="30,0" MinWidth="600">
+            <Label>Type in your random Key</Label>
+            <TextBox Name="UserInputKeyText" IsEnabled="True" />
+            <Label>Hashed Key</Label>
+            <TextBox Name="HashedKeyText" IsEnabled="True" />
+            <Label>Please Input A message before creating a HVAC </Label>
+            <TextBox Name="UserInputMessageText" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="2" Margin="30,0" MinWidth="600">
+
+            <Label>Key and message (HEX)</Label>
+            <TextBox Name="HmacMessageText"/>
+            <Label>Key and message HEX</Label>
+            <TextBox Name="HmacMessageHex"/>
+            <Label>
+                <Hyperlink NavigateUri="https://www.devglan.com/online-tools/hmac-sha256-online">
+                    To verify HMAC SHA256 follow this link
+                </Hyperlink>
+            </Label>
+            
+        </StackPanel>
+
+    </Grid>
+</Window>
