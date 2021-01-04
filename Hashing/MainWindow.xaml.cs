@@ -23,7 +23,7 @@ namespace Hashing
     {
         private byte[] _key;
         private byte[] _hashedKey;
-        private byte[] _hvac;
+        private byte[] _hmacHashed;
 
         private readonly HashingSupervisor _hashingSupervisor;
 
@@ -62,21 +62,18 @@ namespace Hashing
             else
             {
                 byte[] message = _hashingSupervisor.GetBytes(UserInputMessageText.Text);
-                _hvac = _hashingSupervisor.GenerateHmacMessage(_key, message);
-                HmacMessageText.Text = _hashingSupervisor.GetBytesToPlainText(_hvac);
-                HmacMessageHex.Text = _hashingSupervisor.GetByteArrayToHexString(_hvac);
+                _hmacHashed = _hashingSupervisor.GenerateHmac256Message(_key, message);
+                HmacMessageText.Text = _hashingSupervisor.GetBytesToPlainText(_hmacHashed);
+                HmacMessageHex.Text = _hashingSupervisor.GetByteArrayToHexString(_hmacHashed);
+                
             }
 
-            //if (string.IsNullOrEmpty(InputMessageText.Text) || string.IsNullOrEmpty(HashedKeyText.Text))
-            //{
-            //    MessageBox.Show("You must generate a key and a message");
-            //}
-            //else
-            //{
+            
+        }
 
-
-            //   // HvacMessageText.Text= _hashingSupervisor.GetHashedKey()
-            //}
+        private void Authenticate_OnClick(object sender, RoutedEventArgs e)
+        {
+            AuthenticatedText.Text = _hashingSupervisor.CheckAuthenticity(_key, _hmacHashed, UserInputMessageText.Text).ToString();
         }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Hashing"
         mc:Ignorable="d"
         FontSize="14"
-        Title="Flemming's Hasher" Height="450" Width="950">
+        Title="Flemming's Hasher" Height="500" Width="950">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
@@ -30,12 +30,27 @@
                 <TextBlock>SHA1 (Legacy)</TextBlock>
                 <TextBlock>SHA256</TextBlock>
                 <TextBlock>SHA512</TextBlock>
+                <TextBlock>SHA512</TextBlock>
+                
+
 
             </ComboBox>
             <Button Grid.Row="2" Grid.Column="1" Margin="0,10" Content="Generate Hashed Key" Click="Button_Click" />
         </StackPanel>
 
-        <Button Grid.Row="3" Grid.Column="1" Content="Create  HMAC" Click="Hvac_Click" />
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            
+            <ComboBox SelectedIndex="0">
+                <TextBlock>HMAC SHA256</TextBlock>
+                <!--<TextBlock>HMAC SHA512</TextBlock>-->
+
+               
+            </ComboBox>
+
+            <Button Content="Create  HMAC" Click="Hvac_Click" Margin="0,10"/>
+            <Button Name="Authenticate" Content="Authenticate  HMAC"  Click="Authenticate_OnClick" Margin="0,10"/>
+        </StackPanel>
+
         <StackPanel Grid.Row="1" Grid.Column="2" Margin="30,0" MinWidth="600">
             <Label>Type in your random Key</Label>
             <TextBox Name="UserInputKeyText" IsEnabled="True" />
@@ -48,15 +63,18 @@
         <StackPanel Grid.Row="4" Grid.Column="2" Margin="30,0" MinWidth="600">
 
             <Label>Key and message (HEX)</Label>
-            <TextBox Name="HmacMessageText"/>
+            <TextBox Name="HmacMessageText" />
             <Label>Key and message HEX</Label>
-            <TextBox Name="HmacMessageHex"/>
+            <TextBox Name="HmacMessageHex" />
+            <Label>Authenticated</Label>
+            <TextBox Name="AuthenticatedText" />
             <Label>
+
                 <Hyperlink NavigateUri="https://www.devglan.com/online-tools/hmac-sha256-online">
                     To verify HMAC SHA256 follow this link
                 </Hyperlink>
             </Label>
-            
+
         </StackPanel>
 
     </Grid>
